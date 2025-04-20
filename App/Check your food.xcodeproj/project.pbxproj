@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3C3009192DB594E600E1D16E /* OpenFoodFactsSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 3C3009182DB594E600E1D16E /* OpenFoodFactsSDK */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		3CEDFA362DB5924F006CD6D6 /* Check your food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Check your food.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C3009192DB594E600E1D16E /* OpenFoodFactsSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = "Check your food";
 			packageProductDependencies = (
+				3C3009182DB594E600E1D16E /* OpenFoodFactsSDK */,
 			);
 			productName = "Check your food";
 			productReference = 3CEDFA362DB5924F006CD6D6 /* Check your food.app */;
@@ -95,6 +101,9 @@
 			);
 			mainGroup = 3CEDFA2D2DB5924F006CD6D6;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				3C3009172DB594E600E1D16E /* XCRemoteSwiftPackageReference "openfoodfacts-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3CEDFA372DB5924F006CD6D6 /* Products */;
 			projectDirPath = "";
@@ -259,6 +268,8 @@
 				DEVELOPMENT_TEAM = Z4BAF7KN88;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Check-your-food-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -287,6 +298,8 @@
 				DEVELOPMENT_TEAM = Z4BAF7KN88;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Check-your-food-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -327,6 +340,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3C3009172DB594E600E1D16E /* XCRemoteSwiftPackageReference "openfoodfacts-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/openfoodfacts/openfoodfacts-swift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3C3009182DB594E600E1D16E /* OpenFoodFactsSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C3009172DB594E600E1D16E /* XCRemoteSwiftPackageReference "openfoodfacts-swift" */;
+			productName = OpenFoodFactsSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3CEDFA2E2DB5924F006CD6D6 /* Project object */;
 }
