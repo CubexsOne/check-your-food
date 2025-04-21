@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C3009192DB594E600E1D16E /* OpenFoodFactsSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 3C3009182DB594E600E1D16E /* OpenFoodFactsSDK */; };
+		3CD516782DB68B8300BE8D15 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 3CD516772DB68B8300BE8D15 /* CodeScanner */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C3009192DB594E600E1D16E /* OpenFoodFactsSDK in Frameworks */,
+				3CD516782DB68B8300BE8D15 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +70,7 @@
 			);
 			name = "Check your food";
 			packageProductDependencies = (
-				3C3009182DB594E600E1D16E /* OpenFoodFactsSDK */,
+				3CD516772DB68B8300BE8D15 /* CodeScanner */,
 			);
 			productName = "Check your food";
 			productReference = 3CEDFA362DB5924F006CD6D6 /* Check your food.app */;
@@ -102,7 +102,7 @@
 			mainGroup = 3CEDFA2D2DB5924F006CD6D6;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				3C3009172DB594E600E1D16E /* XCRemoteSwiftPackageReference "openfoodfacts-swift" */,
+				3CD516762DB68B8300BE8D15 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3CEDFA372DB5924F006CD6D6 /* Products */;
@@ -342,21 +342,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3C3009172DB594E600E1D16E /* XCRemoteSwiftPackageReference "openfoodfacts-swift" */ = {
+		3CD516762DB68B8300BE8D15 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/openfoodfacts/openfoodfacts-swift";
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3C3009182DB594E600E1D16E /* OpenFoodFactsSDK */ = {
+		3CD516772DB68B8300BE8D15 /* CodeScanner */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3C3009172DB594E600E1D16E /* XCRemoteSwiftPackageReference "openfoodfacts-swift" */;
-			productName = OpenFoodFactsSDK;
+			package = 3CD516762DB68B8300BE8D15 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
