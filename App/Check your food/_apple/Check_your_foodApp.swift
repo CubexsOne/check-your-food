@@ -5,6 +5,7 @@
 //  Created by Pascal Sauer on 20.04.25.
 //
 
+import SwiftData
 import SwiftUI
 
 @main
@@ -13,5 +14,6 @@ struct Check_your_foodApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: ProductModel.self)
     }
 }
