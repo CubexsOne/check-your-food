@@ -14,6 +14,6 @@ struct Check_your_foodApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: ProductModel.self)
+        .modelContainer(for: [ProductModel.self, StoreItem.self])
     }
 }
