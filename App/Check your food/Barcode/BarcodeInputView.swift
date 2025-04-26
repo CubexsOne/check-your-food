@@ -12,7 +12,6 @@ struct BarcodeInputView: View {
     @State private var isShowingAlert: Bool = false
     @State private var alertMessage: String = ""
     
-    @Binding var isShowing: Bool
     @Binding var barcode: String
 
     var body: some View {
@@ -31,7 +30,6 @@ struct BarcodeInputView: View {
         switch scanResult {
         case .success(let result):
             barcode = result.string
-            isShowing.toggle()
         case .failure(let error):
             alertMessage = error.localizedDescription
             isShowingAlert = true
