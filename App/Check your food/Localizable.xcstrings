@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Best-Before date" : {
+
+    },
+    "Cancel" : {
+
+    },
     "Groceries" : {
       "localizations" : {
         "de" : {
@@ -12,6 +18,9 @@
       }
     },
     "OK!" : {
+
+    },
+    "Save" : {
 
     },
     "Scan Barcode" : {
