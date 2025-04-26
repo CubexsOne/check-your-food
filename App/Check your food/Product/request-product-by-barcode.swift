@@ -25,7 +25,6 @@ func requestProductBy(barcode: String) async -> (ProductDto?, Error?) {
         
         let decoder = JSONDecoder()
         let decodedData = try decoder.decode(ProductDto.self, from: data)
-        print(String(describing: decodedData))
         return (decodedData, nil)
     } catch {
         print("Error: \(error.localizedDescription)")
