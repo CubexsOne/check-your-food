@@ -11,40 +11,33 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var products: [ProductModel]
+    @Query(
+        filter: #Predicate<StoreItem> { $0.isDeleted == false },
+        sort: \StoreItem.bestBefore
+    )
+    var storeItems: [StoreItem]
 
     @State private var isShowingScanSheet: Bool = false
     @State private var barcode: String = ""
+    @State private var searchedProduct: ProductModel?
+    @State private var selectedDate: Date = Calendar.current.startOfDay(for: Date())
+    
+    private var languageCode = Locale.current.language.languageCode?.identifier
 
     var body: some View {
         NavigationStack {
             ZStack {
                 List {
-                    ForEach(products) { product in
+                    ForEach(storeItems) { item in
                         HStack {
-                            AsyncImage(url: product.imageURL) { phase in
-                                switch phase {
-                                case .empty:
-                                    Image(systemName: "photo")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .foregroundColor(.gray)
-                                        .opacity(0.3)
-                                case .success(let image):
-                                    image
-                                        .resizable()
-                                        .scaledToFit()
-                                case .failure(_):
-                                    Image(systemName: "xmark.octagon")
-                                @unknown default:
-                                    EmptyView()
-                                }
-                            }
-                            .frame(width: 64, height: 64, alignment: .center)
-                            VStack {
-                                Text(product.productNameDE)
-                                Text(product.barcode)
-                                Text(String(describing: product.imageURL))
+                            ProductImage(product: item.product)
+                                .frame(width: 64, height: 64)
+                            Divider()
+                            VStack(alignment: .leading) {
+                                Text(languageCode == "de" ? item.product.productNameDE : item.product.productNameEN)
+                                    .font(.caption)
+                                Text(item.bestBefore.formatted(date: .long, time: .omitted))
+                                    .font(.subheadline)
                             }
                         }
                     }
@@ -56,37 +49,62 @@ struct ContentView: View {
             .navigationTitle("Groceries")
         }
         .sheet(isPresented: $isShowingScanSheet) {
-            BarcodeInputView(isShowing: $isShowingScanSheet, barcode: $barcode)
+            if let searchedProduct = searchedProduct {
+                Form {
+                    Section {
+                        ProductImage(product: searchedProduct)
+                        Text(languageCode == "de" ? searchedProduct.productNameDE : searchedProduct.productNameEN)
+                            .font(.caption)
+                            .frame(maxWidth: .infinity)
+                            .multilineTextAlignment(.center)
+                    }
+                    
+                    Section {
+                        DatePicker("Best-Before date", selection: $selectedDate, displayedComponents: [.date])
+                    }
+                }
+
+                HStack {
+                    Button("Save") {
+                        let item = StoreItem(bestBefore: selectedDate, product: searchedProduct)
+                        modelContext.insert(item)
+                        isShowingScanSheet.toggle()
+                    }
+                    .buttonStyle(.bordered)
+                    Button("Cancel", role: .cancel) {
+                        isShowingScanSheet.toggle()
+                    }
+                    .buttonStyle(.bordered)
+                }
+                .padding(.bottom, 32)
+            } else {
+                BarcodeInputView(barcode: $barcode)
+            }
+        }
+        .onChange(of: isShowingScanSheet) { _, newValue in
+            if newValue { return }
+            searchedProduct = nil
         }
         .onChange(of: barcode) { oldValue, newValue in
             if oldValue == "" {
+                barcode = ""
+                if let product = getProductBy(barcode: newValue, modelContext) {
+                    searchedProduct = product
+                    return
+                }
+
                 Task {
-                    if await isProductExisting(newValue) { return }
-                    let (product, err) = await requestProductBy(barcode: newValue)
-                    
-                    guard let product = product else {
+                    let (productDto, err) = await requestProductBy(barcode: newValue)
+                    guard let productDto = productDto else {
                         print("Error fetching product: \(err?.localizedDescription ?? "")")
                         return
                     }
-                
-                    let model = mapDtoToModel(product)
-                    modelContext.insert(model)
+                    
+                    let productModel = mapDtoToModel(productDto)
+                    searchedProduct = productModel
+                    modelContext.insert(productModel)
                 }
             }
-        }
-    }
-    
-    func isProductExisting(_ barcode: String) async -> Bool {
-        let descriptor = FetchDescriptor<ProductModel>(
-            predicate: #Predicate { $0.barcode == barcode }
-        )
-        
-        do {
-            let results = try modelContext.fetch(descriptor)
-            return !results.isEmpty
-        } catch {
-            print("Error fetching products: \(error.localizedDescription)")
-            return false
         }
     }
 }
