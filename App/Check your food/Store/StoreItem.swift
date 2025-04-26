@@ -13,10 +13,11 @@ class StoreItem: Identifiable {
     var id: UUID
     var bestBefore: Date
     var isDeleted: Bool = false
-    @Relationship() var product = [ProductModel]()
+    @Relationship() var product: ProductModel
     
-    init(bestBefore: Date) {
+    init(bestBefore: Date, product: ProductModel) {
         self.id = UUID()
         self.bestBefore = bestBefore
+        self.product = product
     }
 }
