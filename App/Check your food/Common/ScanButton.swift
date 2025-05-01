@@ -14,7 +14,6 @@ struct ScanButton: View {
         VStack {
             Spacer()
             HStack {
-                Spacer()
                 Button(action: {
                     callback()
                 }) {
@@ -28,7 +27,6 @@ struct ScanButton: View {
                 }
                 .accessibilityLabel("Scan Barcode")
                 .padding()
-                
             }
         }
     }
