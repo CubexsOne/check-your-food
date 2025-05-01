@@ -39,6 +39,13 @@ struct ContentView: View {
                                 Text(item.bestBefore.formatted(date: .long, time: .omitted))
                                     .font(.subheadline)
                             }
+                            Spacer()
+                            ItemStatus(bestBefore: item.bestBefore)
+                        }
+                    }
+                    .onDelete { offsets in
+                        for offset in offsets {
+                            storeItems[offset].isDeleted = true
                         }
                     }
                 }
@@ -50,61 +57,14 @@ struct ContentView: View {
         }
         .sheet(isPresented: $isShowingScanSheet) {
             if let searchedProduct = searchedProduct {
-                Form {
-                    Section {
-                        ProductImage(product: searchedProduct)
-                        Text(languageCode == "de" ? searchedProduct.productNameDE : searchedProduct.productNameEN)
-                            .font(.caption)
-                            .frame(maxWidth: .infinity)
-                            .multilineTextAlignment(.center)
-                    }
-                    
-                    Section {
-                        DatePicker("Best-Before date", selection: $selectedDate, displayedComponents: [.date])
-                    }
-                }
-
-                HStack {
-                    Button("Save") {
-                        let item = StoreItem(bestBefore: selectedDate, product: searchedProduct)
-                        modelContext.insert(item)
-                        isShowingScanSheet.toggle()
-                    }
-                    .buttonStyle(.bordered)
-                    Button("Cancel", role: .cancel) {
-                        isShowingScanSheet.toggle()
-                    }
-                    .buttonStyle(.bordered)
-                }
-                .padding(.bottom, 32)
+                AddItemView(selectedDate: $selectedDate, isShowingScanSheet: $isShowingScanSheet, searchedProduct: searchedProduct)
             } else {
-                BarcodeInputView(barcode: $barcode)
+                BarcodeInputView(barcode: $barcode, searchedProduct: $searchedProduct)
             }
         }
         .onChange(of: isShowingScanSheet) { _, newValue in
             if newValue { return }
             searchedProduct = nil
-        }
-        .onChange(of: barcode) { oldValue, newValue in
-            if oldValue == "" {
-                barcode = ""
-                if let product = getProductBy(barcode: newValue, modelContext) {
-                    searchedProduct = product
-                    return
-                }
-
-                Task {
-                    let (productDto, err) = await requestProductBy(barcode: newValue)
-                    guard let productDto = productDto else {
-                        print("Error fetching product: \(err?.localizedDescription ?? "")")
-                        return
-                    }
-                    
-                    let productModel = mapDtoToModel(productDto)
-                    searchedProduct = productModel
-                    modelContext.insert(productModel)
-                }
-            }
         }
     }
 }
