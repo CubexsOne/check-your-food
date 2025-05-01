@@ -9,10 +9,13 @@ import CodeScanner
 import SwiftUI
 
 struct BarcodeInputView: View {
+    @Environment(\.modelContext) var modelContext
+
     @State private var isShowingAlert: Bool = false
     @State private var alertMessage: String = ""
     
     @Binding var barcode: String
+    @Binding var searchedProduct: ProductModel?
 
     var body: some View {
         CodeScannerView(
@@ -24,7 +27,29 @@ struct BarcodeInputView: View {
         .alert(isPresented: $isShowingAlert) {
             Alert(title: Text("Scan Error"), message: Text(alertMessage), dismissButton: .default(Text("OK!")))
         }
+        .onChange(of: barcode) { oldValue, newValue in
+            if oldValue == "" {
+                barcode = ""
+                if let product = getProductBy(barcode: newValue, modelContext) {
+                    searchedProduct = product
+                    return
+                }
+
+                Task {
+                    let (productDto, err) = await requestProductBy(barcode: newValue)
+                    guard let productDto = productDto else {
+                        print("Error fetching product: \(err?.localizedDescription ?? "")")
+                        return
+                    }
+                    
+                    let productModel = mapDtoToModel(productDto)
+                    searchedProduct = productModel
+                    modelContext.insert(productModel)
+                }
+            }
+        }
     }
+    
     
     func handleScan(scanResult: Result<ScanResult, ScanError>) {
         switch scanResult {
