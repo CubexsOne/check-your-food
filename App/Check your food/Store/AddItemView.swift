@@ -11,7 +11,7 @@ import SwiftUI
 struct AddItemView: View {
     @Environment(\.modelContext) var modelContext
     
-    @Binding var selectedDate: Date
+    @State private var selectedDate: Date = Calendar.current.startOfDay(for: Date())
     @Binding var isShowingScanSheet: Bool
     
     let searchedProduct: ProductModel
@@ -40,7 +40,7 @@ struct AddItemView: View {
             Spacer()
             Spacer()
             Button("Save") {
-                let item = StoreItem(bestBefore: selectedDate, product: searchedProduct)
+                let item = StoreItemModel(bestBefore: selectedDate, product: searchedProduct)
                 modelContext.insert(item)
                 isShowingScanSheet.toggle()
             }

@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 @Model
-class StoreItem: Identifiable {
+class StoreItemModel: Identifiable {
     var id: UUID
     var bestBefore: Date
     var isDeleted: Bool = false
