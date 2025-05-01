@@ -10,7 +10,7 @@ import SwiftData
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedTab: TabTags = .productList
+    @State private var selectedTab: TabTags = .storeItemList
 
     @State private var isShowingScanSheet: Bool = false
     @State private var barcode: String = ""
@@ -21,8 +21,9 @@ struct ContentView: View {
             ZStack {
                 TabView(selection: $selectedTab) {
                     ItemListView()
+                    ProductListView()
                 }
-                .navigationTitle("Groceries")                    
+                .navigationTitle(getNavigationTitle())
                 ScanButton(callback: {
                     isShowingScanSheet.toggle()
                 })
@@ -38,6 +39,15 @@ struct ContentView: View {
         .onChange(of: isShowingScanSheet) { _, newValue in
             if newValue { return }
             searchedProduct = nil
+        }
+    }
+    
+    func getNavigationTitle() -> String {
+        switch selectedTab {
+        case .storeItemList:
+            return "Groceries"
+        case .productList:
+            return "Products"
         }
     }
 }
