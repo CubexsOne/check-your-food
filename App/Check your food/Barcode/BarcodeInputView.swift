@@ -11,10 +11,10 @@ import SwiftUI
 struct BarcodeInputView: View {
     @Environment(\.modelContext) var modelContext
 
+    @State private var barcode: String = ""
     @State private var isShowingAlert: Bool = false
     @State private var alertMessage: String = ""
-    
-    @Binding var barcode: String
+
     @Binding var searchedProduct: ProductModel?
 
     var body: some View {
