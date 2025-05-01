@@ -7,6 +7,9 @@
     "Cancel" : {
 
     },
+    "Farbe zeigt Ablaufdatum" : {
+
+    },
     "Groceries" : {
       "localizations" : {
         "de" : {
@@ -27,6 +30,9 @@
 
     },
     "Scan Error" : {
+
+    },
+    "Statusindikator" : {
 
     }
   },
