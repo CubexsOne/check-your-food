@@ -11,21 +11,15 @@ struct ProductImage: View {
     var product: ProductModel
 
     var body: some View {
-        AsyncImage(url: product.imageURL) { phase in
-            switch phase {
-            case .empty:
-                emptyImage()
-            case .success(let image):
-                image
-                    .resizable()
-                    .scaledToFit()
-            case .failure(_):
-                Image(systemName: "xmark.octagon")
-            @unknown default:
-                emptyImage()
-            }
+        if let data = product.image, let uiImage = UIImage(data: data) {
+            Image(uiImage: uiImage)
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: .infinity, maxHeight: 256, alignment: .center)
+        } else {
+            emptyImage()
+                .frame(maxWidth: .infinity, maxHeight: 256, alignment: .center)
         }
-        .frame(maxWidth: .infinity, maxHeight: 256, alignment: .center)
     }
     
     func emptyImage() -> some View {

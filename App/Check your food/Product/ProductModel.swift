@@ -14,22 +14,22 @@ class ProductModel {
     var barcode: String
     var productNameDE: String
     var productNameEN: String
-    var imageURL: URL
+    var image: Data?
     
-    init(barcode: String, productNameDE: String, productNameEN: String, imageURL: URL) {
+    init(barcode: String, productNameDE: String, productNameEN: String, image: Data?) {
         self.id = UUID()
         self.barcode = barcode
         self.productNameDE = productNameDE
         self.productNameEN = productNameEN
-        self.imageURL = imageURL
+        self.image = image
     }
 }
 
-func mapDtoToModel(_ dto: ProductDto) -> ProductModel {
+func mapDtoToModel(dto: ProductDto, image: Data?) -> ProductModel {
     return ProductModel(
         barcode: dto.barcode,
         productNameDE: dto.product.productNameDE,
         productNameEN: dto.product.productNameEN,
-        imageURL: dto.product.imageUrl
+        image: image
     )
 }

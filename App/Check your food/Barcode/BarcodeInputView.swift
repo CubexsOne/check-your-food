@@ -36,20 +36,24 @@ struct BarcodeInputView: View {
                 }
 
                 Task {
-                    let (productDto, err) = await requestProductBy(barcode: newValue)
+                    let (productDto, productDtoError) = await requestProductBy(barcode: newValue)
                     guard let productDto = productDto else {
-                        print("Error fetching product: \(err?.localizedDescription ?? "")")
+                        print("Error fetching product: \(productDtoError?.localizedDescription ?? "")")
                         return
                     }
                     
-                    let productModel = mapDtoToModel(productDto)
+                    let (image, imageError) = await downloadProductImageBy(url: productDto.product.imageUrl)
+                    if image == nil {
+                        print("Error downloading image: \(imageError?.localizedDescription ?? "")")
+                    }
+                    
+                    let productModel = mapDtoToModel(dto: productDto, image: image)
                     searchedProduct = productModel
                     modelContext.insert(productModel)
                 }
             }
         }
     }
-    
     
     func handleScan(scanResult: Result<ScanResult, ScanError>) {
         switch scanResult {

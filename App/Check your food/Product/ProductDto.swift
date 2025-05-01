@@ -23,8 +23,8 @@ struct OFFProductDto: Codable {
     let productNameEN: String
     
     enum CodingKeys: String, CodingKey {
-        case productNameDE = "product_name_en"
-        case productNameEN = "product_name_de"
+        case productNameDE = "product_name_de"
+        case productNameEN = "product_name_en"
         case imageUrl = "image_url"
     }
 }
