@@ -4,10 +4,13 @@
     "Best-Before date" : {
 
     },
+    "Best-Before date status indicator" : {
+
+    },
     "Cancel" : {
 
     },
-    "Farbe zeigt Ablaufdatum" : {
+    "Color indicates the status of the best-before date: green for safe consumption, yellow for caution, red for expired" : {
 
     },
     "Groceries" : {
@@ -30,9 +33,6 @@
 
     },
     "Scan Error" : {
-
-    },
-    "Statusindikator" : {
 
     }
   },
