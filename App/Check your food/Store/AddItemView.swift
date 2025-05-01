@@ -16,13 +16,11 @@ struct AddItemView: View {
     
     let searchedProduct: ProductModel
     
-    var languageCode = Locale.current.language.languageCode?.identifier
-    
     var body: some View {
         Form {
             Section {
                 ProductImage(product: searchedProduct)
-                Text(languageCode == "de" ? searchedProduct.productNameDE : searchedProduct.productNameEN)
+                Text(searchedProduct.productName)
                     .font(.caption)
                     .frame(maxWidth: .infinity)
                     .multilineTextAlignment(.center)

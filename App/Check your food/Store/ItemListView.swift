@@ -15,8 +15,6 @@ struct ItemListView: View {
     )
     var storeItems: [StoreItemModel]
     
-    private var languageCode = Locale.current.language.languageCode?.identifier
-    
     var body: some View {
         List {
             ForEach(storeItems) { item in
@@ -25,7 +23,7 @@ struct ItemListView: View {
                         .frame(width: 64, height: 64)
                     Divider()
                     VStack(alignment: .leading) {
-                        Text(languageCode == "de" ? item.product.productNameDE : item.product.productNameEN)
+                        Text(item.product.productName)
                             .font(.caption)
                         Text(item.bestBefore.formatted(date: .long, time: .omitted))
                             .font(.subheadline)

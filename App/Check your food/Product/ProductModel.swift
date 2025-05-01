@@ -12,15 +12,13 @@ import SwiftUI
 class ProductModel {
     var id: UUID
     var barcode: String
-    var productNameDE: String
-    var productNameEN: String
+    var productName: String
     var image: Data?
     
-    init(barcode: String, productNameDE: String, productNameEN: String, image: Data?) {
+    init(barcode: String, productName: String, image: Data?) {
         self.id = UUID()
         self.barcode = barcode
-        self.productNameDE = productNameDE
-        self.productNameEN = productNameEN
+        self.productName = productName
         self.image = image
     }
 }
@@ -28,8 +26,7 @@ class ProductModel {
 func mapDtoToModel(dto: ProductDto, image: Data?) -> ProductModel {
     return ProductModel(
         barcode: dto.barcode,
-        productNameDE: dto.product.productNameDE,
-        productNameEN: dto.product.productNameEN,
+        productName: dto.product.productName,
         image: image
     )
 }

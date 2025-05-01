@@ -19,12 +19,10 @@ struct ProductDto: Codable {
 
 struct OFFProductDto: Codable {
     let imageUrl: URL
-    let productNameDE: String
-    let productNameEN: String
+    let productName: String
     
     enum CodingKeys: String, CodingKey {
-        case productNameDE = "product_name_de"
-        case productNameEN = "product_name_en"
+        case productName = "product_name_en"
         case imageUrl = "image_url"
     }
 }
