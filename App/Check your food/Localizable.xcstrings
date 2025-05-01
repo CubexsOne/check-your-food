@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "Best-Before date" : {
 
     },
@@ -14,6 +17,7 @@
 
     },
     "Groceries" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -24,6 +28,9 @@
       }
     },
     "OK!" : {
+
+    },
+    "Products" : {
 
     },
     "Save" : {
