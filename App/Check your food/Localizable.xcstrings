@@ -1,23 +1,58 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "Best-Before date" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mindesthaltbarkeitsdatum"
+          }
+        }
+      }
     },
     "Best-Before date status indicator" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indikator für das Mindesthaltbarkeitsdatum"
+          }
+        }
+      }
     },
     "Cancel" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbrechen"
+          }
+        }
+      }
     },
     "Color indicates the status of the best-before date: green for safe consumption, yellow for caution, red for expired" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Farbe zeigt den Status des Mindesthaltbarkeitsdatums an: grün für sicheren Verzehr, gelb für Vorsicht, rot für abgelaufen"
+          }
+        }
+      }
+    },
+    "Current stored items: %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuell gelagerte Lebensmittel: %lld"
+          }
+        }
+      }
     },
     "Groceries" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -28,22 +63,84 @@
       }
     },
     "OK!" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ok!"
+          }
+        }
+      }
+    },
+    "Product name" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Produktname"
+          }
+        }
+      }
     },
     "Products" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Produkte"
+          }
+        }
+      }
     },
     "Save" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speichern"
+          }
+        }
+      }
     },
     "Scan Barcode" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barcode scannen"
+          }
+        }
+      }
     },
     "Scan Error" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scann Error"
+          }
+        }
+      }
+    },
+    "Search products" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suche nach Lebensmittel"
+          }
+        }
+      }
     },
     "Stored Items" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gelagert"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
