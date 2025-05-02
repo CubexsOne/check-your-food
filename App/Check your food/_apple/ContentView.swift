@@ -17,17 +17,14 @@ struct ContentView: View {
     @State private var searchedProduct: ProductModel?
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                TabView(selection: $selectedTab) {
-                    ItemListView()
-                    ProductListView()
-                }
-                .navigationTitle(getNavigationTitle())
-                ScanButton(callback: {
-                    isShowingScanSheet.toggle()
-                })
+        ZStack {
+            TabView(selection: $selectedTab) {
+                ItemListView()
+                ProductListView()
             }
+            ScanButton(callback: {
+                isShowingScanSheet.toggle()
+            })
         }
         .sheet(isPresented: $isShowingScanSheet) {
             if let searchedProduct = searchedProduct {
@@ -39,15 +36,6 @@ struct ContentView: View {
         .onChange(of: isShowingScanSheet) { _, newValue in
             if newValue { return }
             searchedProduct = nil
-        }
-    }
-    
-    func getNavigationTitle() -> String {
-        switch selectedTab {
-        case .storeItemList:
-            return "Groceries"
-        case .productList:
-            return "Products"
         }
     }
 }

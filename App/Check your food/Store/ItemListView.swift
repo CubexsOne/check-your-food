@@ -16,27 +16,30 @@ struct ItemListView: View {
     var storeItems: [StoreItemModel]
     
     var body: some View {
-        List {
-            ForEach(storeItems) { item in
-                HStack {
-                    ProductImage(product: item.product)
-                        .frame(width: 64, height: 64)
-                    Divider()
-                    VStack(alignment: .leading) {
-                        Text(item.product.productName)
-                            .font(.caption)
-                        Text(item.bestBefore.formatted(date: .long, time: .omitted))
-                            .font(.subheadline)
+        NavigationStack {
+            List {
+                ForEach(storeItems) { item in
+                    HStack {
+                        ProductImage(product: item.product)
+                            .frame(width: 64, height: 64)
+                        Divider()
+                        VStack(alignment: .leading) {
+                            Text(item.product.productName)
+                                .font(.caption)
+                            Text(item.bestBefore.formatted(date: .long, time: .omitted))
+                                .font(.subheadline)
+                        }
+                        Spacer()
+                        ItemStatus(bestBefore: item.bestBefore)
                     }
-                    Spacer()
-                    ItemStatus(bestBefore: item.bestBefore)
+                }
+                .onDelete { offsets in
+                    for offset in offsets {
+                        storeItems[offset].isDeleted = true
+                    }
                 }
             }
-            .onDelete { offsets in
-                for offset in offsets {
-                    storeItems[offset].isDeleted = true
-                }
-            }
+            .navigationTitle("Groceries")
         }
         .tabItem {
             Label("Stored Items", systemImage: "bag")
