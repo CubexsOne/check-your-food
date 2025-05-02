@@ -23,7 +23,6 @@
 ### Contact
 
 - [Email][email]
-- [Discord][discord]
 
 ---
 Made with ❤️ by [CubexsOne][github]
@@ -33,4 +32,3 @@ Made with ❤️ by [CubexsOne][github]
 
 <!-- Contact Links -->
 [email]: mailto://hello@cubexs.dev
-[discord]: https://discord.com/users/209287454656561154
