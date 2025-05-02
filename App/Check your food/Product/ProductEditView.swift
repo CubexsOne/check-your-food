@@ -12,7 +12,11 @@ struct ProductEditView: View {
     @Environment(\.modelContext) var modelContext
     
     @Bindable var product: ProductModel
-    @Query(filter: #Predicate<StoreItemModel> { $0.isDeleted == false }) var storeItems: [StoreItemModel] = []
+    @Query(
+        filter: #Predicate<StoreItemModel> { $0.isDeleted == false },
+        sort: \StoreItemModel.bestBefore)
+    var storeItems: [StoreItemModel] = []
+
     private var relatedItems: [StoreItemModel] {
         var filteredItems: [StoreItemModel] = []
         for item in storeItems {
