@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ItemStatus: View {
+    @AppStorage("moreThanThreeDaysBefore") var moreThanThreeDaysBefore: String = Color.green.mapToString()
+    @AppStorage("threeDaysBefore") var threeDaysBefore: String = Color.yellow.mapToString()
+    @AppStorage("sameDayOrLater") var sameDayOrLater: String = Color.orange.mapToString()
+
     let bestBefore: Date
     private let today = Date()
 
@@ -16,7 +20,7 @@ struct ItemStatus: View {
             .fill(getStatusColor())
             .frame(width: 16, height: 16)
             .accessibilityLabel(Text("Best-Before date status indicator"))
-            .accessibilityHint(Text("Color indicates the status of the best-before date: green for safe consumption, yellow for caution, red for expired"))
+            .accessibilityHint(Text("Color indicates the status of the best-before date: \(moreThanThreeDaysBefore) for safe consumption, \(threeDaysBefore) for caution, \(sameDayOrLater) for expired"))
     }
     
     func getStatusColor() -> Color {
@@ -26,11 +30,11 @@ struct ItemStatus: View {
         
         switch daysDifference {
         case let x where x > 3:
-            return .green
+            return moreThanThreeDaysBefore.mapToColor()
         case 1...3:
-            return .yellow
+            return threeDaysBefore.mapToColor()
         default:
-            return .red
+            return sameDayOrLater.mapToColor()
         }
     }
 }
