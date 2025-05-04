@@ -19,8 +19,8 @@ struct ItemStatus: View {
         Circle()
             .fill(getStatusColor())
             .frame(width: 16, height: 16)
-            .accessibilityLabel(Text("Best-Before date status indicator"))
-            .accessibilityHint(Text("Color indicates the status of the best-before date: \(moreThanThreeDaysBefore) for safe consumption, \(threeDaysBefore) for caution, \(sameDayOrLater) for expired"))
+            .accessibilityLabel("Best-Before date status indicator")
+            .accessibilityHint("The color indicates the status of the best-before date: \(moreThanThreeDaysBefore) for safe consumption, \(threeDaysBefore) for warning it expires soon, \(sameDayOrLater) for caution could have expired")
     }
     
     func getStatusColor() -> Color {

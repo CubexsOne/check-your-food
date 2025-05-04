@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ color" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Farbe"
+          }
+        }
+      }
+    },
     "Best-Before date" : {
       "localizations" : {
         "de" : {
@@ -31,12 +41,18 @@
         }
       }
     },
-    "Color indicates the status of the best-before date: green for safe consumption, yellow for caution, red for expired" : {
+    "Color indicates the status of the best-before date: %@ for safe consumption, %@ for caution, %@ for expired" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Farbe zeigt den Status des Mindesthaltbarkeitsdatums an: grün für sicheren Verzehr, gelb für Vorsicht, rot für abgelaufen"
+            "value" : "Die Farbe zeigt den Status des Mindesthaltbarkeitsdatums an: %1$@ für sicheren Verzehr, %2$@ für Warnung es läuft bald ab, %3$@ für Vorsicht könnte abgelaufen sein"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Color indicates the status of the best-before date: %1$@ for safe consumption, %2$@ for caution, %3$@ for expired"
           }
         }
       }
@@ -132,12 +148,64 @@
         }
       }
     },
+    "Settings" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
+          }
+        }
+      }
+    },
+    "Status indicators" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status Indikator"
+          }
+        }
+      }
+    },
     "Stored Items" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gelagert"
+          }
+        }
+      }
+    },
+    "Tap to change the color for %@. Current color: %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe um die Farbe zu %1$@ zuändern. Aktuelle Farbe: %2$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Tap to change the color for %1$@. Current color: %2$@"
+          }
+        }
+      }
+    },
+    "Tap to select the color %@ for %@." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe um die Farbe %1$@ für %2$@ auszuwählen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Tap to select the color %1$@ for %2$@."
           }
         }
       }
