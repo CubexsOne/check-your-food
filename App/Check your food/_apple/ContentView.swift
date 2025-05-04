@@ -12,30 +12,13 @@ import SwiftUI
 struct ContentView: View {
     @State private var selectedTab: TabTags = .storeItemList
 
-    @State private var isShowingScanSheet: Bool = false
-    @State private var barcode: String = ""
-    @State private var searchedProduct: ProductModel?
-
     var body: some View {
         ZStack {
             TabView(selection: $selectedTab) {
                 ItemListView()
                 ProductListView()
+                SettingsView()
             }
-            ScanButton(callback: {
-                isShowingScanSheet.toggle()
-            })
-        }
-        .sheet(isPresented: $isShowingScanSheet) {
-            if let searchedProduct = searchedProduct {
-                AddItemView(isShowingScanSheet: $isShowingScanSheet, searchedProduct: searchedProduct)
-            } else {
-                BarcodeInputView(searchedProduct: $searchedProduct)
-            }
-        }
-        .onChange(of: isShowingScanSheet) { _, newValue in
-            if newValue { return }
-            searchedProduct = nil
         }
     }
 }

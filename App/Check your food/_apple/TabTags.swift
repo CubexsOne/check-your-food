@@ -8,4 +8,5 @@
 enum TabTags {
     case storeItemList
     case productList
+    case settings
 }
